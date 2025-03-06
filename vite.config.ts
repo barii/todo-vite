@@ -22,9 +22,14 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/todo': {
-        target: 'http://localhost:8080',  // Backend API
+        target: 'http://localhost:9002',  // Backend API
         changeOrigin: true,  // Changes the origin of the request to match the target
         rewrite: (path) => path.replace(/^\/api\/todo/, '/api/todo'), // Ensures correct path
+      },
+      '/api/auth': {
+        target: 'http://localhost:9001',  // Backend API
+        changeOrigin: true,  // Changes the origin of the request to match the target
+        rewrite: (path) => path.replace(/^\/api\/auth/, '/api/auth'), // Ensures correct path
       }
     }
   }

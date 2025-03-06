@@ -1,13 +1,11 @@
 
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 :root {
+  height: 100vh;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -55,6 +53,56 @@
   --sidebar-ring: oklch(0.871 0.006 286.286);
 }
 
+.dark {
+  height: 100vh;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #121212;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --background: oklch(0.12 0 0);
+  --foreground: oklch(0.85 0.02 285.823);
+  --card: oklch(0.16 0 0);
+  --card-foreground: oklch(0.85 0.02 285.823);
+  --popover: oklch(0.16 0 0);
+  --popover-foreground: oklch(0.85 0.02 285.823);
+  --primary: oklch(0.75 0.3 316.59);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.25 0.01 286.375);
+  --secondary-foreground: oklch(0.85 0.02 285.885);
+  --muted: oklch(0.20 0.01 286.375);
+  --muted-foreground: oklch(0.6 0.02 285.938);
+  --accent: oklch(0.3 0.02 286.375);
+  --accent-foreground: oklch(0.85 0.02 285.885);
+  --destructive: oklch(0.6 0.26 27.325);
+  --destructive-foreground: oklch(0.1 0 0);
+  --border: oklch(0.25 0.01 286.32);
+  --input: oklch(0.22 0.01 286.32);
+  --ring: oklch(0.3 0.02 286.286);
+  --chart-1: oklch(0.65 0.25 41.116);
+  --chart-2: oklch(0.5 0.15 184.704);
+  --chart-3: oklch(0.45 0.1 227.392);
+  --chart-4: oklch(0.8 0.2 84.429);
+  --chart-5: oklch(0.7 0.2 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.14 0 0);
+  --sidebar-foreground: oklch(0.85 0.02 285.823);
+  --sidebar-primary: oklch(0.25 0.02 285.885);
+  --sidebar-primary-foreground: oklch(0.85 0.02 285.823);
+  --sidebar-accent: oklch(0.3 0.02 286.375);
+  --sidebar-accent-foreground: oklch(0.85 0.02 285.885);
+  --sidebar-border: oklch(0.22 0.01 286.32);
+  --sidebar-ring: oklch(0.3 0.02 286.286);
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -68,8 +116,16 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+body > * {
+  width: 100%;
 }
 
 h1 {
@@ -84,7 +140,6 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -96,7 +151,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -107,7 +162,7 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
 
 .dark {
   --background: oklch(0.141 0.005 285.823);
@@ -188,11 +243,19 @@ button:focus-visible {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground w-full h-full;
   }
 }
-
 
 /*body {*/
 /*  @apply font-geologica;*/
 /*}*/
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
